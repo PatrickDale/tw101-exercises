@@ -4,10 +4,10 @@ public class Accumulator {
     private int accumulator;
 
     public void increment() {
-        accumulator ++;
+        this.accumulator ++;
     }
 
     public void total() {
-        System.out.println(accumulator);
+        System.out.println(this.accumulator);
     }
 }
