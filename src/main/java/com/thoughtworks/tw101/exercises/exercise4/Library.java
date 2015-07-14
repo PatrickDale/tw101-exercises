@@ -11,7 +11,16 @@ public class Library {
         this.printStream = printStream;
     }
 
+    private boolean Contains(String str, String subStr) {
+        return str.toLowerCase().contains(subStr.toLowerCase());
+    }
+
     public String printBooksContaining(String partialBookTitle) {
+        for (String book : this.books) {
+            if (this.Contains(book, partialBookTitle)) {
+                this.printStream.println(book);
+            }
+        }
         return null;
     }
 }
