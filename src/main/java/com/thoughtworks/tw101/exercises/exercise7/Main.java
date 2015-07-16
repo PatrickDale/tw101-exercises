@@ -7,7 +7,7 @@ package com.thoughtworks.tw101.exercises.exercise7;
 public class Main {
 
     public static void main(String[] args) {
-        GuessGame game = new GuessGame();
+        GuessGame game = new GuessGame(new Player());
         game.beginGame();
     }
 }
