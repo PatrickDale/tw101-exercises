@@ -15,6 +15,6 @@ public class SmartGuessGame extends GuessGame {
     @Override
     public void beginGame() {
         super.beginGame();
-        ((SmartPlayer) player).printGuessList();
+        ((SmartPlayer) super.getPlayer()).printGuessList();
     }
 }

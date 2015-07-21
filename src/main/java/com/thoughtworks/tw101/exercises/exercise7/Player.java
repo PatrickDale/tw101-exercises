@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Created by patdale on 7/15/15.
  */
 public class Player {
-    protected Scanner input = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
 
     public int getGuess() {
         System.out.print("Enter a number between 1 and 100: ");

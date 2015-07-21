@@ -4,11 +4,15 @@ package com.thoughtworks.tw101.exercises.exercise7;
  * Created by patdale on 7/15/15.
  */
 public class GuessGame {
-    protected int numberToGuess = (int)(Math.random() * 100.0) + 1;
-    protected Player player;
+    private int numberToGuess = (int)(Math.random() * 100.0) + 1;
+    private Player player;
 
     public GuessGame(Player player) {
         this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     protected boolean isCorrectGuess(int guess) {
