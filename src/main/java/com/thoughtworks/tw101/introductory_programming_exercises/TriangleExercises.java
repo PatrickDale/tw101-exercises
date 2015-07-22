@@ -44,6 +44,8 @@ public class TriangleExercises {
 //            **
 //            ***
     private static void drawARightTriangle(int n) {
-
+        for (int i = 0; i < n; i++) {
+            drawAHorizontalLine(i + 1);
+        }
     }
 }
