@@ -8,40 +8,23 @@ public class DiamondExercises {
     }
 
 //  Helper Methods
-
-    private static int getNumOfCharsInMaxLevel(int maxLevel) {
-        return (maxLevel * 2) - 1;
-    }
-
-    private static String returnAHorizontalLineWithPadding(int charsPerLevel, int level) {
-        int numOfAsteriskForLevel = getNumOfAsteriskForLevel(level);
-        String line = returnAHorizontalLine(numOfAsteriskForLevel);
-        int padding = getPaddingAmountForLevel(charsPerLevel, numOfAsteriskForLevel);
-        line = addPaddingToLine(line, padding);
-        return line;
-    }
-
     private static int getNumOfAsteriskForLevel(int level) {
         return (level * 2) + 1;
     }
 
-    private static String returnAHorizontalLine(int numOfAsteriskForLevel) {
-        String line = "";
-        for (int i = 0; i < numOfAsteriskForLevel; i++) {
-            line += "*";
-        }
-        return line;
+    private static int getAmountOfPaddingForLevel(int level, int maxLevel) {
+        return maxLevel - (level + 1);
     }
 
-    private static int getPaddingAmountForLevel(int charsPerLevel, int numOfAsteriskForLevel) {
-        return (charsPerLevel - numOfAsteriskForLevel) / 2;
+    private static void drawAHorizontalLineWithPadding(int numOfAsterisks, int amountOfPadding) {
+        printPadding(amountOfPadding);
+        TriangleExercises.pubDrawAHorizontalLine(numOfAsterisks);
     }
 
-    private static String addPaddingToLine(String line, int padding) {
-        for (int i = 0; i < padding; i++) {
-            line = " " + line + " ";
+    private static void printPadding(int amountOfPadding) {
+        for (int i = 0; i < amountOfPadding; i++) {
+            System.out.print(" ");
         }
-        return line;
     }
 
 //    Isosceles Triangle
@@ -50,11 +33,10 @@ public class DiamondExercises {
 //             ***
 //            *****
     private static void drawAnIsoscelesTriangle(int n) {
-        int charsPerLevel = getNumOfCharsInMaxLevel(n);
-
         for (int i = 0; i < n; i++) {
-            String line = returnAHorizontalLineWithPadding(charsPerLevel, i);
-            System.out.println(line);
+            int numOfAsteriskForLevel = getNumOfAsteriskForLevel(i);
+            int amountOfPadding = getAmountOfPaddingForLevel(i,n);
+            drawAHorizontalLineWithPadding(numOfAsteriskForLevel, amountOfPadding);
         }
     }
 
