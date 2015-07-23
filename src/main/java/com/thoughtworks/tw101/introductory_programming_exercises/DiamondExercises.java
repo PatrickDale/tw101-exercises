@@ -33,13 +33,6 @@ public class DiamondExercises {
         drawAHorizontalLineWithPadding(numOfAsteriskForLevel, amountOfPadding);
     }
 
-    private static void drawADiamondTail(int n) {
-        int maxTailWidth = n - 2;
-        for (int i = maxTailWidth;i >= 0; i--) {
-            drawAnIsoscelesTriangleLevel(i, n);
-        }
-    }
-
 //    Isosceles Triangle
 //    Given a number n, print a centered triangle. Example for n=3:
 //              *
@@ -47,6 +40,14 @@ public class DiamondExercises {
 //            *****
     private static void drawAnIsoscelesTriangle(int n) {
         for (int i = 0; i < n; i++) {
+            drawAnIsoscelesTriangleLevel(i, n);
+        }
+    }
+
+//  Helper Method
+    private static void drawADiamondTail(int n) {
+        int maxTailWidth = n - 2;
+        for (int i = maxTailWidth;i >= 0; i--) {
             drawAnIsoscelesTriangleLevel(i, n);
         }
     }
@@ -63,6 +64,19 @@ public class DiamondExercises {
         drawADiamondTail(n);
     }
 
+//  Helper methods
+    private static void drawAnIsoscelesTriangleWithYourName(int n) {
+        int maxTriangleWidth = n - 1;
+        for (int i = 0; i < maxTriangleWidth; i++) {
+            drawAnIsoscelesTriangleLevel(i, n);
+        }
+        drawMyName("Pat");
+    }
+
+    private static void drawMyName(String name) {
+        System.out.println(name);
+    }
+
     //    Diamond with Name
 //    Given a number n, print a centered diamond with your name in place of the middle line. Example for n=3:
 //
@@ -72,6 +86,7 @@ public class DiamondExercises {
 //            ***
 //             *
     private static void drawADiamondWithYourName(int n) {
-
+        drawAnIsoscelesTriangleWithYourName(n);
+        drawADiamondTail(n);
     }
 }
