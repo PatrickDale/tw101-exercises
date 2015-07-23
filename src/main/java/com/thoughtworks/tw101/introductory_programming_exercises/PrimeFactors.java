@@ -10,9 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeFactors {
+
+    public static final int SMALLEST_PRIME_FACTOR = 2;
+    public static final int SMALLEST_COMPOSITE_NUMBER = 4;
+
     public static void main(String[] args) {
-        List<Integer> primeFactors = generate(100);
-        print(primeFactors);
+        List<Integer> primeFactors = generate(30);
+//        print(primeFactors);
     }
 
     private static void print(List<Integer> primeFactors) {
@@ -21,31 +25,43 @@ public class PrimeFactors {
         }
     }
 
-    // Idea based on : http://www.quora.com/Is-there-a-relation-between-a-number-and-its-largest-prime-factor
-    private static List<Integer> generate(int n) {
-        List<Integer> primeFactors = new ArrayList<>();
-        if (n > 3) {
-            int upperPrimeFactorBound = getUpperPrimeFactorBound(n);
-            for (int i = 2; i <= upperPrimeFactorBound; i++) {
-                if (n % i == 0 && isPrime(i, primeFactors)) {
-                    primeFactors.add(i);
-                    upperPrimeFactorBound = n / i;
-                }
-            }
-        }
-        return primeFactors;
+    private static boolean isAtLeastSmallestCompositeNumber(int n) {
+        return n >= SMALLEST_COMPOSITE_NUMBER;
+    }
+
+    private static int getUpperPrimeFactorBound(int n) {
+        return n / SMALLEST_PRIME_FACTOR;
+    }
+
+    private static boolean isDivisible(int dividend, int divisor) {
+        return dividend % divisor == 0;
     }
 
     private static boolean isPrime(int number, List<Integer> primeFactors) {
-        for (int n: primeFactors) {
-            if (number % n == 0) {
+        for (int primeFactor: primeFactors) {
+            if (isDivisible(number, primeFactor)) {
                 return false;
             }
         }
         return true;
     }
 
-    private static int getUpperPrimeFactorBound(int n) {
-        return n/2;
+    private static int lowerUpperPrimeFactorBound(int currentUpperBound, int numberToBeFactored) {
+        return numberToBeFactored / currentUpperBound;
+    }
+
+    // Idea based on : http://www.quora.com/Is-there-a-relation-between-a-number-and-its-largest-prime-factor
+    private static List<Integer> generate(int n) {
+        List<Integer> primeFactors = new ArrayList<>();
+        if (isAtLeastSmallestCompositeNumber(n)) {
+            int upperPrimeFactorBound = getUpperPrimeFactorBound(n);
+            for (int i = SMALLEST_PRIME_FACTOR; i <= upperPrimeFactorBound; i++) {
+                if (isDivisible(n, i) && isPrime(i, primeFactors)) {
+                    primeFactors.add(i);
+                    upperPrimeFactorBound = lowerUpperPrimeFactorBound(i, n);
+                }
+            }
+        }
+        return primeFactors;
     }
 }
