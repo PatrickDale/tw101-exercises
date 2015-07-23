@@ -27,6 +27,19 @@ public class DiamondExercises {
         }
     }
 
+    private static void drawAnIsoscelesTriangleLevel(int level, int maxLevel) {
+        int numOfAsteriskForLevel = getNumOfAsteriskForLevel(level);
+        int amountOfPadding = getAmountOfPaddingForLevel(level, maxLevel);
+        drawAHorizontalLineWithPadding(numOfAsteriskForLevel, amountOfPadding);
+    }
+
+    private static void drawADiamondTail(int n) {
+        int maxTailWidth = n - 2;
+        for (int i = maxTailWidth;i >= 0; i--) {
+            drawAnIsoscelesTriangleLevel(i, n);
+        }
+    }
+
 //    Isosceles Triangle
 //    Given a number n, print a centered triangle. Example for n=3:
 //              *
@@ -34,9 +47,7 @@ public class DiamondExercises {
 //            *****
     private static void drawAnIsoscelesTriangle(int n) {
         for (int i = 0; i < n; i++) {
-            int numOfAsteriskForLevel = getNumOfAsteriskForLevel(i);
-            int amountOfPadding = getAmountOfPaddingForLevel(i,n);
-            drawAHorizontalLineWithPadding(numOfAsteriskForLevel, amountOfPadding);
+            drawAnIsoscelesTriangleLevel(i, n);
         }
     }
 
@@ -48,10 +59,11 @@ public class DiamondExercises {
 //             ***
 //              *
     private static void drawADiamond(int n) {
-
+        drawAnIsoscelesTriangle(n);
+        drawADiamondTail(n);
     }
 
-//    Diamond with Name
+    //    Diamond with Name
 //    Given a number n, print a centered diamond with your name in place of the middle line. Example for n=3:
 //
 //             *

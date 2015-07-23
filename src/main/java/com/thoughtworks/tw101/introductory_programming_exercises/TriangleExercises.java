@@ -31,10 +31,7 @@ public class TriangleExercises {
 
     // public drawHorizontalLine method for DiamondExercises
     public static void pubDrawAHorizontalLine(int n) {
-        for (int i = 0; i < n; i++) {
-            drawAnAsterisk();
-        }
-        drawABlankLine();
+        drawAHorizontalLine(n);
     }
 
 //    Draw a vertical line
