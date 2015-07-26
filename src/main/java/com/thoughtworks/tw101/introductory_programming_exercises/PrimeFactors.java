@@ -16,7 +16,7 @@ public class PrimeFactors {
 
     public static void main(String[] args) {
         List<Integer> primeFactors = generate(30);
-//        print(primeFactors);
+        print(primeFactors);
     }
 
     private static void print(List<Integer> primeFactors) {
@@ -33,6 +33,10 @@ public class PrimeFactors {
         return n / SMALLEST_PRIME_FACTOR;
     }
 
+    private static boolean isAPrimeFactor(int number, int numberToBeFactored, List<Integer> primeFactors) {
+        return isDivisible(numberToBeFactored, number) && isPrime(number, primeFactors);
+    }
+
     private static boolean isDivisible(int dividend, int divisor) {
         return dividend % divisor == 0;
     }
@@ -46,7 +50,7 @@ public class PrimeFactors {
         return true;
     }
 
-    private static int lowerUpperPrimeFactorBound(int currentUpperBound, int numberToBeFactored) {
+    private static int decreaseUpperPrimeFactorBound(int currentUpperBound, int numberToBeFactored) {
         return numberToBeFactored / currentUpperBound;
     }
 
@@ -56,9 +60,9 @@ public class PrimeFactors {
         if (isAtLeastSmallestCompositeNumber(n)) {
             int upperPrimeFactorBound = getUpperPrimeFactorBound(n);
             for (int i = SMALLEST_PRIME_FACTOR; i <= upperPrimeFactorBound; i++) {
-                if (isDivisible(n, i) && isPrime(i, primeFactors)) {
+                if (isAPrimeFactor(i, n, primeFactors)) {
                     primeFactors.add(i);
-                    upperPrimeFactorBound = lowerUpperPrimeFactorBound(i, n);
+                    upperPrimeFactorBound = decreaseUpperPrimeFactorBound(i, n);
                 }
             }
         }

@@ -49,12 +49,16 @@ public class FizzBuzz {
         }
     }
 
+    private static boolean isDivisibleBy(int number, int divisor) {
+        return (number % divisor) == 0;
+    }
+
     private static boolean numberIsDivisibleByFive(int number) {
-        return (number % 5) == 0;
+        return isDivisibleBy(number, 5);
     }
 
     private static boolean numberIsDivisibleByThree(int number) {
-        return (number % 3) == 0;
+        return isDivisibleBy(number, 3);
     }
 
     private static boolean numberIsDivisibleByThreeAndFive(int number) {
