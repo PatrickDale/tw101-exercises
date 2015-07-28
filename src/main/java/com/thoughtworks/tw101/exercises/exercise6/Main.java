@@ -22,16 +22,17 @@ public class Main {
         monsters.add(new Orc());
 
         for (Monster monster: monsters) {
-            switch (monster.name()) {
-                case "Troll":
-                    monster.takeDamage(20);
-                    break;
-                case "Orc":
-                    monster.takeDamage(10);
-                    break;
-                default:
-                    break;
-            }
+//            switch (monster.name()) {
+//                case "Troll":
+//                    monster.takeDamage(20);
+//                    break;
+//                case "Orc":
+//                    monster.takeDamage(10);
+//                    break;
+//                default:
+//                    break;
+//            }
+            monster.takeDamage(10);
         }
 
         for (Monster monster: monsters) {

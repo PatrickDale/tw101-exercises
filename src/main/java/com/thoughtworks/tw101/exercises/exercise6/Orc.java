@@ -12,14 +12,6 @@ public class Orc implements Monster {
         this.name = "Orc";
     }
 
-    public int currentHitpoints() {
-        return this.hitpoints;
-    }
-
-    public String name() {
-        return this.name;
-    }
-
     public void reportStatus() {
         System.out.println(this.name + ": " + this.hitpoints + " hitpoints.");
     }

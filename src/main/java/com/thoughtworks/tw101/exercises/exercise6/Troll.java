@@ -12,16 +12,8 @@ public class Troll implements Monster {
         this.name = "Troll";
     }
 
-    public int currentHitpoints() {
-        return this.hitpoints;
-    }
-
-    public String name() {
-        return this.name;
-    }
-
     public void reportStatus() {
-        System.out.println(name() + ": " + currentHitpoints() + " hitpoints.");
+        System.out.println(this.name + ": " + this.hitpoints + " hitpoints.");
     }
 
     public void takeDamage(int amount) {
