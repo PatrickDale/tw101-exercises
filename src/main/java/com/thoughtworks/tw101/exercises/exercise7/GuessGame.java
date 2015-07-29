@@ -28,7 +28,6 @@ public class GuessGame {
                 System.out.print("Too high! ");
             }
             guess = this.player.getGuess();
-
         }
         System.out.println("Correct!");
     }

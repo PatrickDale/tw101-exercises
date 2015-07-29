@@ -8,15 +8,18 @@ import java.util.Scanner;
 public class Player {
     private Scanner input = new Scanner(System.in);
 
+    private boolean notAValidGuess(int guess) {
+        return guess <= 0 || guess > 100;
+    }
+
     public int getGuess() {
-        System.out.print("Enter a number between 1 and 100: ");
-        int guess;
-        while (true) {
+        int guess = 0;
+        while(notAValidGuess(guess)) {
+            System.out.print("Enter a number between 1 and 100: ");
             try {
                 guess = Integer.parseInt(input.nextLine());
-                break;
             } catch (NumberFormatException e) {
-                System.out.print("Enter a number between 1 and 100: ");
+                System.out.println("You did not enter a number!");
             }
         }
         return guess;
