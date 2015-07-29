@@ -8,9 +8,11 @@ public class Node {
     private String name;
     private Node leftChild;
     private Node rightChild;
+    private static List<String> names = new ArrayList<>();
 
     public Node(String name) {
         this.name = name;
+        //this.names = new ArrayList<>();
     }
 
     private boolean hasLeftChild() {
@@ -46,21 +48,13 @@ public class Node {
     }
 
     public List<String> names() {
-        return recNamesHelper(new ArrayList<String>());
-    }
-
-    // Inorder Traversal: DFS
-    private List<String> recNamesHelper(List<String> names) {
-        if (this == null) {
-            return names;
+        if (this.hasLeftChild()) {
+            this.leftChild.names();
         }
-        if (this.leftChild != null) {
-            this.leftChild.recNamesHelper(names);
+        Node.names.add(this.name);
+        if (this.hasRightChild()) {
+            this.rightChild.names();
         }
-        names.add(this.name);
-        if (this.rightChild != null) {
-            this.rightChild.recNamesHelper(names);
-        }
-        return names;
+        return Node.names;
     }
 }
