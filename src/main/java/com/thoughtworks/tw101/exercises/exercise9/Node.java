@@ -25,8 +25,12 @@ public class Node {
         recAddHelper(this, nameOfNewNode);
     }
 
+    private boolean newNodeIsLeftChild(String nameOfNewNode) {
+        return nameOfNewNode.compareToIgnoreCase(this.name) <= 0;
+    }
+
     private void recAddHelper(Node root, String nameOfNewNode) {
-        if (nameOfNewNode.compareToIgnoreCase(root.name) <= 0) { // newNode is alphabetically before or same as the root
+        if (root.newNodeIsLeftChild(nameOfNewNode)) {
             if (root.hasLeftChild()) {
                 recAddHelper(root.leftChild, nameOfNewNode);
             } else {
@@ -42,17 +46,21 @@ public class Node {
     }
 
     public List<String> names() {
-        return recNamesHelper(new ArrayList<String>(), this);
+        return recNamesHelper(new ArrayList<String>());
     }
 
     // Inorder Traversal: DFS
-    private List<String> recNamesHelper(List<String> names, Node root) {
-        if (root == null) {
+    private List<String> recNamesHelper(List<String> names) {
+        if (this == null) {
             return names;
         }
-        recNamesHelper(names, root.leftChild);
-        names.add(root.name);
-        recNamesHelper(names, root.rightChild);
+        if (this.leftChild != null) {
+            this.leftChild.recNamesHelper(names);
+        }
+        names.add(this.name);
+        if (this.rightChild != null) {
+            this.rightChild.recNamesHelper(names);
+        }
         return names;
     }
 }
