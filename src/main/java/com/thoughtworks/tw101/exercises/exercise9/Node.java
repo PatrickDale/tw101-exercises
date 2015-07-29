@@ -12,7 +12,6 @@ public class Node {
 
     public Node(String name) {
         this.name = name;
-        //this.names = new ArrayList<>();
     }
 
     private boolean hasLeftChild() {
@@ -23,29 +22,29 @@ public class Node {
         return this.rightChild != null;
     }
 
-    public void add(String nameOfNewNode) {
-        recAddHelper(this, nameOfNewNode);
-    }
-
     private boolean newNodeIsLeftChild(String nameOfNewNode) {
         return nameOfNewNode.compareToIgnoreCase(this.name) <= 0;
     }
 
-    private void recAddHelper(Node root, String nameOfNewNode) {
-        if (root.newNodeIsLeftChild(nameOfNewNode)) {
-            if (root.hasLeftChild()) {
-                recAddHelper(root.leftChild, nameOfNewNode);
+    public void add(String nameOfNewNode) {
+        if (this.newNodeIsLeftChild(nameOfNewNode)) {
+            if (this.hasLeftChild()) {
+                this.leftChild.add(nameOfNewNode);
             } else {
-                root.leftChild = new Node(nameOfNewNode);
+                this.leftChild = new Node(nameOfNewNode);
             }
         } else { // new Node is alphabetically after root
-            if (root.hasRightChild()) {
-                recAddHelper(root.rightChild, nameOfNewNode);
+            if (this.hasRightChild()) {
+                this.rightChild.add(nameOfNewNode);
             } else {
-                root.rightChild = new Node(nameOfNewNode);
+                this.rightChild = new Node(nameOfNewNode);
             }
         }
     }
+
+//    private void recAddHelper(String nameOfNewNode) {
+//
+//    }
 
     public List<String> names() {
         if (this.hasLeftChild()) {
