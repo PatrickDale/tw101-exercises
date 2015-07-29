@@ -26,32 +26,36 @@ public class Node {
         return nameOfNewNode.compareToIgnoreCase(this.name) <= 0;
     }
 
-    public void add(String nameOfNewNode) {
-        if (this.newNodeIsLeftChild(nameOfNewNode)) {
-            if (this.hasLeftChild()) {
-                this.leftChild.add(nameOfNewNode);
-            } else {
-                this.leftChild = new Node(nameOfNewNode);
-            }
-        } else { // new Node is alphabetically after root
-            if (this.hasRightChild()) {
-                this.rightChild.add(nameOfNewNode);
-            } else {
-                this.rightChild = new Node(nameOfNewNode);
-            }
+    private void addNodeToLeftChild(String nameOfNewNode) {
+        if (hasLeftChild()) {
+            this.leftChild.add(nameOfNewNode);
+        } else {
+            this.leftChild = new Node(nameOfNewNode);
         }
     }
 
-//    private void recAddHelper(String nameOfNewNode) {
-//
-//    }
+    private void addNodeToRightChild(String nameOfNewNode) {
+        if (hasRightChild()) {
+            this.rightChild.add(nameOfNewNode);
+        } else {
+            this.rightChild = new Node(nameOfNewNode);
+        }
+    }
+
+    public void add(String nameOfNewNode) {
+        if (newNodeIsLeftChild(nameOfNewNode)) {
+            addNodeToLeftChild(nameOfNewNode);
+        } else {
+            addNodeToRightChild(nameOfNewNode);
+        }
+    }
 
     public List<String> names() {
-        if (this.hasLeftChild()) {
+        if (hasLeftChild()) {
             this.leftChild.names();
         }
         Node.names.add(this.name);
-        if (this.hasRightChild()) {
+        if (hasRightChild()) {
             this.rightChild.names();
         }
         return Node.names;
